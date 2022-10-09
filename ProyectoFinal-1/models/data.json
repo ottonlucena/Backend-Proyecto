@@ -1,0 +1,93 @@
+{
+  "productos": [
+    {
+      "id": 1,
+      "timestamp": "Sat, 08 Oct 2022 21:41:27 GMT",
+      "nombre": "OTTO",
+      "descripcion": "Funciona para llevar tu TV a una smarTV",
+      "codigo": 22,
+      "foto": "https://www.weplay.cl/pub/media/catalog/product/cache/3f1b140c3c9f36fbf6b01dffb521c246/p/o/portada.png",
+      "precio": "100",
+      "stock": 10
+    },
+    {
+      "id": 2,
+      "timestamp": "Sat, 08 Oct 2022 21:31:57 GMT",
+      "nombre": "Fire TV",
+      "descripcion": "Funciona para llevar tu TV a una smarTV",
+      "codigo": 10,
+      "foto": "https://www.weplay.cl/pub/media/catalog/product/cache/3f1b140c3c9f36fbf6b01dffb521c246/p/o/portada.png",
+      "precio": "100",
+      "stock": 10
+    },
+    {
+      "id": 3,
+      "timestamp": "Sat, 08 Oct 2022 21:33:55 GMT",
+      "nombre": "Echo show 5",
+      "descripcion": "Asistente de voz",
+      "codigo": 73,
+      "foto": "https://cdn.shopify.com/s/files/1/0417/5645/9170/products/AMAZON-ECHO-SHOW-5.5-2GEN_1500X1500_1.png?v=1627338985",
+      "precio": "100",
+      "stock": 10
+    }
+  ],
+  "carrito": [
+    {
+      "id": 1,
+      "timestamp": "",
+      "productos": [
+        {
+          "id": 1,
+          "timestamp": "Sat, 08 Oct 2022 21:41:27 GMT",
+          "nombre": "OTTO",
+          "descripcion": "Funciona para llevar tu TV a una smarTV",
+          "codigo": 22,
+          "foto": "https://www.weplay.cl/pub/media/catalog/product/cache/3f1b140c3c9f36fbf6b01dffb521c246/p/o/portada.png",
+          "precio": "100",
+          "stock": 10
+        },
+        {
+          "id": 2,
+          "timestamp": "Sat, 08 Oct 2022 21:41:27 GMT",
+          "nombre": "OTTO",
+          "descripcion": "Funciona para llevar tu TV a una smarTV",
+          "codigo": 22,
+          "foto": "https://www.weplay.cl/pub/media/catalog/product/cache/3f1b140c3c9f36fbf6b01dffb521c246/p/o/portada.png",
+          "precio": "100",
+          "stock": 10
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "timestamp": "",
+      "productos": [
+        {
+          "id": 1,
+          "timestamp": "Sat, 08 Oct 2022 21:41:27 GMT",
+          "nombre": "OTTON",
+          "descripcion": "Funciona para llevar tu TV a una smarTV",
+          "codigo": 22,
+          "foto": "https://www.weplay.cl/pub/media/catalog/product/cache/3f1b140c3c9f36fbf6b01dffb521c246/p/o/portada.png",
+          "precio": "100",
+          "stock": 10
+        },
+        {
+          "id": 2,
+          "timestamp": "Sat, 08 Oct 2022 21:41:27 GMT",
+          "nombre": "OTTON",
+          "descripcion": "Funciona para llevar tu TV a una smarTV",
+          "codigo": 22,
+          "foto": "https://www.weplay.cl/pub/media/catalog/product/cache/3f1b140c3c9f36fbf6b01dffb521c246/p/o/portada.png",
+          "precio": "100",
+          "stock": 10
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "timestamp": "Sun, 09 Oct 2022 01:27:18 GMT",
+      "productos": []
+    }
+  ]
+}
