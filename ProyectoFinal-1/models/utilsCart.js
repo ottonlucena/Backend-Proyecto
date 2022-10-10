@@ -1,4 +1,3 @@
-const e = require("express");
 const fs = require("fs");
 const BD = require("./data.json");
 
@@ -26,8 +25,71 @@ const createCart = (newCart) => {
   return newCart;
 };
 
+const deleteCart = (id) => {
+  const indexCart = BD.carrito.findIndex((cart) => cart.id === +id);
+  if (indexCart < 0) {
+    return `El número de id: '${id}' NO existe`;
+  }
+  const newList = BD.carrito.filter((list) => list.id !== +id);
+  BD.carrito = newList;
+  saveToDatabase(BD);
+  return newList;
+};
+
+const createProduct = (id, newProduct) => {
+  const indexProduc = BD.carrito.findIndex((product) => product.id === +id);
+  const cart = BD.carrito.find((product) => product.id === +id);
+
+  //Validamos que el carrito con el ID exista
+  if (indexProduc < 0) {
+    return `Número de carrito: '${id}' NO existente!`;
+  }
+
+  const nombre = cart.productos.find(
+    (product) => product.nombre === newProduct.nombre
+  );
+
+  //Validamos que el nombre ingresado no este asignado a otro producto.
+  if (nombre) {
+    return `Producto con el nombre: '${newProduct.nombre}' existente!`;
+  }
+
+  const newProductId = {
+    id: cart.productos.length + 1,
+    ...newProduct,
+  };
+
+  cart.productos.push(newProductId);
+  BD.carrito[indexProduc] = cart;
+  saveToDatabase(BD);
+  return newProductId;
+};
+
+const deleteProduct = (id, id_prod) => {
+  const indexCart = BD.carrito.findIndex((cart) => cart.id === +id);
+  const indexProduct = BD.carrito[indexCart].productos.findIndex(
+    (el) => el.id === +id_prod
+  );
+
+  if (indexCart < 0) return `Número de Carrito: '${id}' NO existe!`;
+
+  if (indexProduct < 0) return `Número de Producto: '${id_prod}' NO existe! `;
+
+  const newListProduct = BD.carrito[indexCart].productos.filter(
+    (product) => product.id !== indexProduct + 1
+  );
+
+  BD.carrito[indexCart].productos = newListProduct;
+  BD.carrito[indexCart].productos.map((el) => (el.id = 1));
+  saveToDatabase(BD);
+  return newListProduct;
+};
+
 module.exports = {
   getAll,
   getById,
   createCart,
+  deleteCart,
+  createProduct,
+  deleteProduct,
 };

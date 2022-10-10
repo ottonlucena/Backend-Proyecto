@@ -2,15 +2,17 @@ const utils = require("../models/utils");
 
 const getAllProducts = (req, res) => {
   const allProducts = utils.getAll();
-  res.json({ status: "OK", data: allProducts });
+  res.status(200).json({ status: "OK", data: allProducts });
 };
 
 const getById = (req, res) => {
   const { id } = req.params;
   const product = utils.getById(id);
+
   if (!product) {
-    res.json({ status: "False", result: `No se encontró ID ${id}` });
+    return;
   }
+
   res.json({ status: "OK", data: product });
 };
 
@@ -22,6 +24,7 @@ const createProduct = (req, res) => {
       status: "False",
       result: "Producto no cumple con el formato requerido!",
     });
+    return;
   }
 
   const newPorduct = {
@@ -36,14 +39,15 @@ const createProduct = (req, res) => {
   };
 
   const createNewProduct = utils.createProduct(newPorduct);
+
   if (!createNewProduct) {
     res.status(404).json({
       status: "False",
       result: `Producto con el nombre '${nombre}' creado.`,
     });
+    return;
   }
   res.status(201).json({ status: "OK", data: createNewProduct });
-  return createNewProduct;
 };
 
 const updateProduct = (req, res) => {

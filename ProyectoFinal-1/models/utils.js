@@ -14,9 +14,11 @@ const getAll = () => {
 
 const getById = (id) => {
   const product = BD.productos.find((product) => product.id === +id);
+
   if (!product) {
-    return;
+    return `Producto con el id: '${id}' NO encontrado!`;
   }
+
   return product;
 };
 
@@ -55,9 +57,7 @@ const updateProduct = (id, changes) => {
 const deleteOneProduct = (id) => {
   const indexDelete = BD.productos.findIndex((product) => product.id === +id);
 
-  if (indexDelete == -1) {
-    return;
-  }
+  if (indexDelete < 0) return;
 
   const newList = BD.productos.filter((product) => product.id !== +id);
   BD.productos = newList;
