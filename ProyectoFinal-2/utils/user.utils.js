@@ -1,4 +1,6 @@
-const { faker } = require("@faker-js/faker");
+//No aplica lo dejo para futuros proyectos.
+
+/* const { faker } = require("@faker-js/faker");
 const { v4: uuid } = require("uuid");
 
 const createFakeUser = () => {
@@ -14,3 +16,4 @@ const createFakeUser = () => {
 module.exports = {
   createFakeUser,
 };
+ */

@@ -1,3 +1,4 @@
+const { HttpError } = require("../../../utils/api.utils");
 const MemoryContainer = require("../../containers/memory.container");
 
 class DaoCartsMemory extends MemoryContainer {

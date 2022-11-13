@@ -1,11 +1,11 @@
 const FirebaseContainer = require("../../containers/firebase.container");
 
-const collection = "products";
+const collection = "users";
 
-class ProductsFirebaseDao extends FirebaseContainer {
+class UsersFirebaseDao extends FirebaseContainer {
   constructor() {
     super(collection);
   }
 }
 
-module.exports = ProductsFirebaseDao;
+module.exports = UsersFirebaseDao;

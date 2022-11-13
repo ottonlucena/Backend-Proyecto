@@ -1,13 +1,13 @@
 const { HTTP_STATUS } = require("../constants/api.constants");
-const { UsersDao } = require("../models/daos/app.daos");
+const { ProductsDao } = require("../models/daos/app.daos");
 const { successResponse } = require("../utils/api.utils");
 
-const userDao = new UsersDao();
+const productsDao = new ProductsDao();
 
-class UsersController {
-  async getUsers(req, res, next) {
+class ProductsController {
+  async getProducts(req, res, next) {
     try {
-      const users = await userDao.getAll();
+      const users = await productsDao.getAll();
       const response = successResponse(users);
       res.status(HTTP_STATUS.OK).json(response);
     } catch (error) {
@@ -15,10 +15,11 @@ class UsersController {
     }
   }
 
-  async getUserById(req, res, next) {
+  async getProductById(req, res, next) {
     const { id } = req.params;
+    console.log(id);
     try {
-      const user = await userDao.getById(id);
+      const user = await productsDao(id); //AQUI ESTA MAL TODAVIA
       const response = successResponse(user);
       res.status(HTTP_STATUS.OK).json(response);
     } catch (error) {
@@ -26,9 +27,18 @@ class UsersController {
     }
   }
 
-  async saveUser(req, res, next) {
+  async saveProduct(req, res, next) {
+    const { nombre, descripcion, codigo, foto, precio, stock } = req.body;
     try {
-      const newUser = await userDao.save(req.body);
+      const newUser = await productsDao.save({
+        timestamp: new Date().toUTCString(),
+        nombre,
+        descripcion,
+        codigo,
+        foto,
+        precio,
+        stock,
+      });
       const response = successResponse(newUser);
       res.status(HTTP_STATUS.CREATED).json(response);
     } catch (error) {
@@ -36,10 +46,10 @@ class UsersController {
     }
   }
 
-  async updateUser(req, res, next) {
+  async updateProduct(req, res, next) {
     const { id } = req.params;
     try {
-      const updateUser = await userDao.update(id, req.body);
+      const updateUser = await productsDao.update(id, req.body);
       const response = successResponse(updateUser);
       res.status(HTTP_STATUS.OK).json(response);
     } catch (error) {
@@ -47,27 +57,16 @@ class UsersController {
     }
   }
 
-  async deleteUser(req, res, next) {
+  async deleteProduct(req, res, next) {
     const { id } = req.params;
     try {
-      const deletedUser = await userDao.delete(id);
+      const deletedUser = await productsDao.delete(id);
       const response = successResponse(deletedUser);
       res.status(HTTP_STATUS.OK).json(response);
     } catch (error) {
       next(error);
     }
   }
-
-  /* populate(req, res, next) {
-    const { qty } = req.query;
-    try {
-      const users = userDao.populate(qty);
-      const response = successResponse(users);
-      res.status(HTTP_STATUS.OK).json(response);
-    } catch (error) {
-      next(error);
-    }
-  } */ //No aplica, lo dejo para futuros proyectos.
 }
 
-module.exports = new UsersController();
+module.exports = new ProductsController();
