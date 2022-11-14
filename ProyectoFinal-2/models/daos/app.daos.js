@@ -13,7 +13,7 @@ switch (envConfig.DATASOURCE) {
   case "firebase":
     ProductsDao = require("./products/dao.products.firebase");
     UsersDao = require("./users/users.firebase.dao");
-    CartsDao = require("./carts/dao.carts.mongo");
+    CartsDao = require("./carts/dao.carts.firebease");
     break;
   case "file":
     ProductsDao = require("./products/dao.products.file");

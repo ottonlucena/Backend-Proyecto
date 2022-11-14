@@ -4,8 +4,8 @@ const { successResponse } = require("../utils/api.utils");
 
 const cartsDao = new CartsDao();
 
-class UsersController {
-  async getUsers(req, res, next) {
+class CartsController {
+  async getCarts(req, res, next) {
     try {
       const users = await cartsDao.getAll();
       const response = successResponse(users);
@@ -15,7 +15,7 @@ class UsersController {
     }
   }
 
-  async getUserById(req, res, next) {
+  async getCartById(req, res, next) {
     const { id } = req.params;
     try {
       const user = await cartsDao.getById(id);
@@ -26,7 +26,7 @@ class UsersController {
     }
   }
 
-  async saveUser(req, res, next) {
+  async saveCart(req, res, next) {
     try {
       const newUser = await cartsDao.save(req.body);
       const response = successResponse(newUser);
@@ -36,7 +36,7 @@ class UsersController {
     }
   }
 
-  async updateUser(req, res, next) {
+  async updateCart(req, res, next) {
     const { id } = req.params;
     try {
       const updateUser = await cartsDao.update(id, req.body);
@@ -47,7 +47,7 @@ class UsersController {
     }
   }
 
-  async deleteUser(req, res, next) {
+  async deleteCart(req, res, next) {
     const { id } = req.params;
     try {
       const deletedUser = await cartsDao.delete(id);
@@ -59,4 +59,4 @@ class UsersController {
   }
 }
 
-module.exports = new UsersController();
+module.exports = new CartsController();

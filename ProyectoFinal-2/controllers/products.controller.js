@@ -17,9 +17,8 @@ class ProductsController {
 
   async getProductById(req, res, next) {
     const { id } = req.params;
-    console.log(id);
     try {
-      const user = await productsDao(id); //AQUI ESTA MAL TODAVIA
+      const user = await productsDao.getById(id);
       const response = successResponse(user);
       res.status(HTTP_STATUS.OK).json(response);
     } catch (error) {

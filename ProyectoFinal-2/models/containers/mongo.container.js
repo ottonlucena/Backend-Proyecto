@@ -22,8 +22,7 @@ class MongoContainer {
     return documents;
   }
 
-  async getByid(id) {
-    console.log(id);
+  async getById(id) {
     const document = await this.model.findOne({ _id: id }, { __v: 0 });
     if (!document) {
       const msg = `Resource no exist en registro ${id}`;

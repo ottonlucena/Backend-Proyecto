@@ -6,14 +6,17 @@ const { HttpError } = require("../../utils/api.utils");
 
 class FirebaseContainer {
   constructor(collection) {
+    FirebaseContainer.connect();
     const db = getFirestore();
     this.query = db.collection(collection);
   }
 
   static connect() {
-    admin.initializeApp({
-      credential: admin.credential.cert(dbConfig.firebase.credentials),
-    });
+    if (!admin.apps.length) {
+      admin.initializeApp({
+        credential: admin.credential.cert(dbConfig.firebase.credentials),
+      });
+    }
     console.log(`Firebase connected`);
   }
 
@@ -28,8 +31,8 @@ class FirebaseContainer {
     });
   }
 
-  async getByid(id) {
-    const docRef = await this.query.get(id);
+  async getById(id) {
+    const docRef = await this.query.doc(id);
     if (!docRef) {
       const msg = `Resource no exist en registro ${id}`;
       throw new HttpError(HTTP_STATUS.NOT_FOUND, msg);
@@ -41,7 +44,7 @@ class FirebaseContainer {
 
   async save(item) {
     const docRef = this.query.doc();
-    return await docRef.save(item);
+    return await docRef.set(item);
   }
 
   async update(id, item) {
@@ -51,7 +54,18 @@ class FirebaseContainer {
       throw new HttpError(HTTP_STATUS.NOT_FOUND, msg);
     }
 
-    return await docRef.update(item);
+    const { nombre, descripcion, codigo, foto, precio, stock } = item;
+
+    const newUser = {
+      timestamp: new Date().toUTCString(),
+      nombre,
+      descripcion,
+      codigo,
+      foto,
+      precio,
+      stock,
+    };
+    return await docRef.update(newUser);
   }
 
   async delete(id) {
